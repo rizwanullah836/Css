@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2 Solution</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Our Menu</h1>
+    <div class="row">
+        <div class="col-lg-4 col-md-6">
+            <div class="section">
+                <div class="section-title">Chicken</div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="section">
+                <div class="section-title">Beef</div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="section">
+                <div class="section-title">Sushi</div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do <br> eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+*Step 2: Create a CSS file*
+
+Create a new folder called `css` and inside it, create a new file called `styles.css`. Paste the following CSS code into it:
+```
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.row {
+    width: 100%;
+}
+
+.section {
+    background-color: #f0f0f0;
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    position: relative;
+}
+
+.section-title {
+    background-color: #ccc;
+    border: 1px solid black;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 10px;
+    font-size: 1.25em;
+}
+
+p {
+    margin-top: 30px;
+}
+
+@media (min-width: 992px) {
+    .col-lg-4 {
+        float: left;
+        width: 33.33%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .col-md-6 {
+        float: left;
+        width: 50%;
+    }
+    .col-md-12 {
+        float: left;
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .col-lg-4, .col-md-6, .col-md-12 {
+        float: none;
+        width: 100%;
+    }
+}
