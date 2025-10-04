@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+
+struct node {
+    int data;
+    node* next;
+};
+
+node* head = NULL;
+node* tail = NULL;
+
+void insertAtEnd(int element) {
+    node* n = new node();
+    n->data = element;
+    n->next = NULL;
+
+    if (head == NULL) {
+        head = n;
+        tail = n;
+    } else {
+        tail->next = n;
+        tail = n;
+    }
+}
+
+void display() {
+    cout << "The elements of linked list are: ";
+    node* temp = head;
+    while (temp != NULL) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+}
+
+int main() {
+    insertAtEnd(1);
+    insertAtEnd(4);
+    display();
+}
