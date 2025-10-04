@@ -1,0 +1,106 @@
+#include<iostream>
+using namespace std;
+
+struct node {
+    int data;
+    node* next;
+};
+
+node* head = NULL;
+node* tail = NULL;
+
+void insertAtEnd(int element) {
+    node* n = new node();
+    n->data = element;
+    n->next = NULL;
+
+    if (head == NULL) {
+        head = n;
+        tail = n;
+    } else {
+        tail->next = n;
+        tail = n;
+    }
+}
+void insertAfter(int key,int value){
+	node* temp = head;
+	while(temp!=NULL && temp->data!=key){
+		temp = temp->next;
+		
+	}
+	if(temp==NULL){
+		cout<<"value"<<key<<"not found in list";
+	}
+	node* n = new node();
+	n->data = value;
+	n->next = temp->next;
+	
+	if(temp==tail){
+		tail = n;
+	}
+}
+
+void display() {
+    cout << "The elements of linked list are: ";
+    node* temp = head;
+    while (temp != NULL) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+}
+void removenode(int value) {
+    if (head == NULL) {
+        cout << "List is empty, nothing to remove." << endl;
+        return;
+    }
+
+    if (head->data == value) {
+        node* temp = head;
+        head = head->next;
+        delete temp;
+
+        if (head == NULL) {
+            tail = NULL;
+        }
+        cout << "Node with value " << value << " deleted from list." << endl;
+        return;
+    }
+
+    node* prev = head;
+    node* curr = head->next;
+
+    while (curr != NULL && curr->data != value) {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    if (curr == NULL) {
+        cout << "Value " << value << " not found in list." << endl;
+        return;
+    }
+
+    prev->next = curr->next;
+
+    if (curr == tail) {
+        tail = prev;
+    }
+
+    delete curr;
+    cout << "Node with value " << value << " deleted from list." << endl;
+}
+
+int main() {
+    insertAtEnd(1);
+    insertAtEnd(4);
+    insertAtEnd(6);
+
+    cout << "Before inserting in middle:\n";
+    display();
+    removenode(4);
+
+    insertAfter(1, 2); // Insert 2 after 1
+    insertAfter(4, 5); // Insert 5 after 4
+
+    cout << "\nAfter inserting in middle:\n";
+    display();
+}
