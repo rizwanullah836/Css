@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+
+struct node {
+    int data;
+    node* next;
+};
+
+node* head = NULL;
+node* tail = NULL;
+
+// Function to create a new node and insert at end (to build initial list)
+void insertAtEnd(int value) {
+    node* n = new node();
+    n->data = value;
+    n->next = NULL;
+
+    if (head == NULL) {
+        head = n;
+        tail = n;
+    } else {
+        tail->next = n;
+        tail = n;
+    }
+}
+
+// ?? Function to insert a node in the middle (after a given value)
+void insertAfter(int key, int value) {
+    node* temp = head;
+
+    // Find the node that has data == key
+    while (temp != NULL && temp->data != key) {
+        temp = temp->next;
+    }
+
+    // If not found
+    if (temp == NULL) {
+        cout << "Value " << key << " not found in list.\n";
+        return;
+    }
+
+    // Create new node
+    node* n = new node();
+    n->data = value;
+    n->next = temp->next;
+    temp->next = n;
+
+    // If we inserted after the tail, update tail
+    if (temp == tail) {
+        tail = n;
+    }
+}
+
+void display() {
+    cout << "Linked list elements: ";
+    node* temp = head;
+    while (temp != NULL) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    // Create an initial list
+    insertAtEnd(10);
+    insertAtEnd(20);
+    insertAtEnd(30);
+
+    cout << "Before insertion:\n";
+    display();
+
+    // Insert in the middle
+    insertAfter(10, 15); // after 10
+    insertAfter(20, 25); // after 20
+
+    cout << "\nAfter insertion in middle:\n";
+    display();
+
+    return 0;
+}
