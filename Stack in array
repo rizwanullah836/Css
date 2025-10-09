@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+
+class stack{
+	int* container;
+	int size;
+	int top;
+	
+	public:
+		stack(int s){
+			size = s;
+			top = -1;
+			container = new int[size]{0};
+			
+		}
+		void push(int e){
+			if(top<size-1){
+				container [++top] = e;
+			}else{
+				cout<<"stackflow";
+			}
+		}
+		void   pop(){
+			if(top>=0){
+				cout<<container[top--]<<"\n";
+			}else{
+				cout<<"underflow";
+			}
+		}
+};
+int main(){
+	stack s(2);
+	s.push(5);
+	s.push(7);
+	s.pop();
+	s.pop();
+}
