@@ -1,0 +1,52 @@
+#include<iostream>
+using namespace std;
+struct node{
+	int data;
+	node*  next;
+};
+node* top = NULL;
+void push(int element){
+	node* n = new node();
+	n->data = element;
+	n->next= top;
+	top = n;
+	cout<<element<<"pushed to stack:"<<endl;
+}
+void pop(){
+	if(top==NULL){
+		cout<<"stack is empty:"<<endl;
+	}
+	node* temp =top;
+	cout<<"the pop element is:"<<top->data<<endl;
+	top = top->next;
+	delete temp;
+	
+}
+int peek(){
+	if(top==NULL){
+		cout<<"stack element is empty:"<<endl;
+		return -1;
+		
+	}
+	return top->data;
+}
+void display(){
+	if(top==NULL){
+		cout<<"stack is empty:"<<endl;
+	}
+	cout<<"stck element is ::"<<endl;
+	node* temp = top;
+	while(temp!=NULL){
+		cout<<temp->data<<endl;
+		temp = temp->next;
+	}
+}
+int main(){
+	push(4);
+	push(5);
+	push(6);
+	display();
+	cout<<"top elment are"<<peek()<<endl;
+	pop();
+	display();
+}
